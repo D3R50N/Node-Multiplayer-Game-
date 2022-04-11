@@ -12,4 +12,4 @@ Don't forget to <code>npm install</code> all dependencies in the <a href="https:
   <code>cd ../Client</code>
   </li>
   </ul>
-  Then run ./index.html file and <b>enjoy🔥</b>
+  Then run <a href="https://github.com/D3R50N/Node-Multiplayer-Game-/blob/main/Client/index.html">./index.html</a> file and <b>enjoy🔥</b>
