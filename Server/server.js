@@ -28,14 +28,26 @@ function updateUsers() {
     io.emit('update', users);
 }
 
-io.on('connection', (socket) => {
-    console.log("connected");
+io.on('connection', (socket) => {  
+    console.log("connected"); 
+    clear()
     let sid = socket.id;
-    user = new lib.User(sid);
-    users.select.all();
-    socket.on('uname', (n) => {
+    let user = new lib.User(sid, lib.rand(200), lib.rand(200),"orange");
+    //users.select.all();
+    updateUsers();
+    socket.emit('infos', user);
+    lib.users.all.forEach(e => {
+        if (e.id != sid)
+            socket.emit('others', e);
+
+    })
+    socket.broadcast.emit('others', user);
+
+    socket.on('uname', (n) => { 
         user.name = n;
-        users.select.all();
+       // users.select.all();
+        console.log("User ", users.select.user(sid));
+
         updateUsers();
     })
     socket.on('disconnect', () => {

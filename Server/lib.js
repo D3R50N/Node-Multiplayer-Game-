@@ -10,16 +10,19 @@ class Users {
         },
         user: (id) => {
             let found = false;
+            let user;
             this.all.forEach((e) => {
 
                 if (e.id == id) {
-                    console.log("User ", e);
                     found = true;
+                    user = e;
                 }
             })
 
             if (!found)
-                log("Not found");
+                return ("Not found");
+            else 
+                return user;
 
         }
     };
@@ -49,8 +52,11 @@ const users = new Users();
 
 
 class User {
-    constructor(id) {
+    constructor(id,x,y,col) {
         this.id = id;
+        this.col = col;
+        this.x = x;
+        this.y = y;
         this.name = "Unknown"
         users.all.push(this)
     }
@@ -60,4 +66,8 @@ class User {
     }
 }
 
-module.exports = { Users, User,users }
+var rand = (max, min = 0) => {
+    return parseInt(Math.random() * (max - min)) + min;
+}
+
+module.exports = { Users, User,users,rand }
