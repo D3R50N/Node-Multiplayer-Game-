@@ -25,34 +25,38 @@ server.listen(port, (err) => {
 const users = lib.users;
 
 function updateUsers() {
+    // users.select.all();
     io.emit('update', users);
 }
 
 io.on('connection', (socket) => {  
     console.log("connected"); 
     clear()
-    let sid = socket.id;
-    let user = new lib.User(sid, lib.rand(200), lib.rand(200),"orange");
-    //users.select.all();
-    updateUsers();
-    socket.emit('infos', user);
-    lib.users.all.forEach(e => {
-        if (e.id != sid)
-            socket.emit('others', e);
+    let sid = socket.id; 
+    let user = new lib.User(sid, lib.rand(600), lib.rand(600),"red");
+    socket.emit('infos',user)
+    lib.users.all.forEach(su => {
+        if (su.id != sid)
+            socket.emit('newOpponent', su);
+    });
+    updateUsers(); 
 
-    })
-    socket.broadcast.emit('others', user);
-
-    socket.on('uname', (n) => { 
-        user.name = n;
-       // users.select.all();
-        console.log("User ", users.select.user(sid));
-
+    socket.on('changeName', (n) => {
+        users.select.user(sid).name = n; 
         updateUsers();
-    })
+
+    });
+    socket.on('newUser', (u) => {
+        socket.broadcast.emit('newOpponent', u);
+
+    });
     socket.on('disconnect', () => {
-        users.remove.user(sid);
+        io.emit('remove', sid);
+        lib.users.remove.user(sid);
+
+        updateUsers(); 
 
     })
-})
+}) 
 
+   

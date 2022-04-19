@@ -4,9 +4,56 @@ canvas {
     height: 90%;
     top: 5%;
     left: 5%;
-    background-color : white;
-    border-radius : 10px;
+    background-color: white;
+    border-radius: 10px;
 
+}
+
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    --green: rgb(33, 216, 146);
+    --violet: rgb(144, 36, 156);
+
+
+    font-size: small;
+}
+
+body {
+    background-color: rgb(32, 34, 136);
+}
+
+#load_container {
+    background-color: #0058;
+    position: absolute;
+    width: 70%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+    /* z-index: 10000; */
+}
+
+#load {
+    border: 5px solid rgb(255, 255, 255);
+    border-top-color: #0000;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: load 2s linear infinite;
+}
+
+@keyframes load {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 #cvDiv {
@@ -19,6 +66,12 @@ canvas {
 
 }
 
+#btni {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 #menuDiv {
     padding: 2%;
     top: 0;
@@ -29,28 +82,9 @@ canvas {
     background: linear-gradient(var(--green), var(--violet))
 }
 
-body {
-    background-color: rgb(32, 34, 136);
-}
-
-* {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    --green: rgb(33, 216, 146);
-    --violet: rgb(144, 36, 156);
-
-
-    font-size: large;
-}
-
 input, button {
     padding: 10px;
     border-radius: 10px;
-}
-
-#btni {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
 }
 
 button {
