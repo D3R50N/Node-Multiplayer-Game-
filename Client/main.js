@@ -3,8 +3,9 @@ var socket = io.connect("http://localhost:3000");
 socket.on('connect_error', () => {
     // alert("Erreur de coonexion")
     document.querySelector('#err').style.display = "block";
-    document.querySelector('#load').style.display = "none";
+    document.querySelector('#load').style.display = "none"; 
 })
+//
 socket.on('connect', () => {
     document.querySelector('#load_container').style.display = "none";
 })
